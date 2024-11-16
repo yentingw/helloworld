@@ -51,7 +51,17 @@ jobs:
           aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
           kubectl config current-context
 
-      - name: Deploy to EKS
+      # - name: Deploy to EKS
+      #   env:
+      #     EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      #     ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+      #     ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     # Set image in Kubernetes deployment
+      #     kubectl set image deployment/helloworld my-container=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -n d
+      - name: Test
         env:
           EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
@@ -60,4 +70,4 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Set image in Kubernetes deployment
-          kubectl set image deployment/helloworld my-container=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          kubectl get deployments
