@@ -70,4 +70,4 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Set image in Kubernetes deployment
-          kubectl get deployments
+          kubectl apply -f k8s/deployment.yaml
