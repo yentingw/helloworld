@@ -50,8 +50,5 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          # Update kubeconfig
-          # aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
-
           # Set image in Kubernetes deployment
           kubectl set image deployment/my-deployment my-container=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
