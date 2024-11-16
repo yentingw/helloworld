@@ -42,6 +42,15 @@ jobs:
         run: |
           echo "Docker Image URI: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
+      - name: Update kubeconfig
+        env:
+          EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          set -e
+          aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+          kubectl config current-context
+
       - name: Deploy to EKS
         env:
           EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }}
