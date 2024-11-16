@@ -39,4 +39,5 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Output Image URI
-        run: echo "Docker Image URI: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        run: |
+          echo "Docker Image URI: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
