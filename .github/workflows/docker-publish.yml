@@ -60,4 +60,4 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Set image in Kubernetes deployment
-          kubectl set image deployment/my-deployment my-container=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          kubectl set image deployment/helloworld my-container=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
